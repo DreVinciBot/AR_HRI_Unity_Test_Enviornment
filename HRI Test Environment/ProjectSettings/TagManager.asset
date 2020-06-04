@@ -8,6 +8,7 @@ TagManager:
   - Robot
   - H_Collectible
   - R_Collectible
+  - phone
   layers:
   - Default
   - TransparentFX
