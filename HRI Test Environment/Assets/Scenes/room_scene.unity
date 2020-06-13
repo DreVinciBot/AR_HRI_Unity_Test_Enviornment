@@ -220,11 +220,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 98938082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d85eeb58da27dfb4ea9d652bf02b9939, type: 3}
+  m_Script: {fileID: 11500000, guid: a73c80f79edefa246b068389c48d1d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wanderRadius: 20
-  wanderTimer: 3
+  collectibles: []
+  positions: []
 --- !u!114 &98938086
 MonoBehaviour:
   m_ObjectHideFlags: 0
