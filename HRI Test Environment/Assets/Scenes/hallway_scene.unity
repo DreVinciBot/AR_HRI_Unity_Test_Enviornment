@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.4964127, b: 0.57481724, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -111,7 +111,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: ebfcaa9b8ab4f8e428ed951ef1b7e9a2, type: 2}
 --- !u!1 &4952009
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +211,42 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!195 &98938085
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98938082}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &98938086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98938082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2171cc6c8b9c56a42b04c01344c8f3d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goal: {fileID: 0}
+  robot: {fileID: 0}
 --- !u!4 &315941377 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4330988864604264, guid: 55567c256a6884a158741388f339b8d0,
@@ -406,7 +442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4098609260650186, guid: 78196c2946aba40bcb735ee1782fd7dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.907689
+      value: 4.31
       objectReference: {fileID: 0}
     - target: {fileID: 4098609260650186, guid: 78196c2946aba40bcb735ee1782fd7dc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -611,12 +647,12 @@ PrefabInstance:
     - target: {fileID: 6483120590176594948, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.11
+      value: 8.327689
       objectReference: {fileID: 0}
     - target: {fileID: 6483120590176594948, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.7741
+      value: 14.763
       objectReference: {fileID: 0}
     - target: {fileID: 6483120590176594948, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
@@ -677,6 +713,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Robot Agent
+      objectReference: {fileID: 0}
+    - target: {fileID: 6483120590176594949, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: m_TagString
+      value: Robot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 313fe590fdb88cd4e9aa7896b6bc9842, type: 3}
@@ -761,6 +802,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Human Agent
       objectReference: {fileID: 0}
+    - target: {fileID: 4211546763208911102, guid: 5a61eb55c228ab84f9c4f445c2bb8108,
+        type: 3}
+      propertyPath: m_TagString
+      value: Human
+      objectReference: {fileID: 0}
     - target: {fileID: 4211546763208911103, guid: 5a61eb55c228ab84f9c4f445c2bb8108,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -769,12 +815,12 @@ PrefabInstance:
     - target: {fileID: 4211546763208911103, guid: 5a61eb55c228ab84f9c4f445c2bb8108,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2
+      value: 9.417689
       objectReference: {fileID: 0}
     - target: {fileID: 4211546763208911103, guid: 5a61eb55c228ab84f9c4f445c2bb8108,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.9297647
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4211546763208911103, guid: 5a61eb55c228ab84f9c4f445c2bb8108,
         type: 3}
@@ -823,3 +869,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a61eb55c228ab84f9c4f445c2bb8108, type: 3}
+--- !u!1 &4211546764205807553 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4211546763208911102, guid: 5a61eb55c228ab84f9c4f445c2bb8108,
+    type: 3}
+  m_PrefabInstance: {fileID: 4211546764205807552}
+  m_PrefabAsset: {fileID: 0}
+--- !u!208 &4211546764205807554
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4211546764205807553}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 1.32, y: 1.33, z: 1.32}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5

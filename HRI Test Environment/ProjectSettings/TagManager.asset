@@ -10,6 +10,7 @@ TagManager:
   - R_Collectible
   - phone
   - robotEye
+  - Collect_Timer
   layers:
   - Default
   - TransparentFX
