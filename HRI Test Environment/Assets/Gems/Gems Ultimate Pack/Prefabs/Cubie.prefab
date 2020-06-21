@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 33000013317686294}
   - component: {fileID: 23000010834650084}
   - component: {fileID: 114000012791302422}
+  - component: {fileID: 2746304901977396003}
+  - component: {fileID: 8637123358847673004}
   m_Layer: 0
   m_Name: Cubie
   m_TagString: Untagged
@@ -102,3 +104,29 @@ MonoBehaviour:
   endScale: {x: 1.5, y: 1.5, z: 1.5}
   scaleSpeed: 1
   scaleRate: 0.5
+--- !u!114 &2746304901977396003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013765287000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc32b374074bb940b39f17037d5fb4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &8637123358847673004
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013765287000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 3.9803605
+  m_Height: 7.960721
+  m_Direction: 1
+  m_Center: {x: 0.0039429665, y: 3.0166528e-16, z: -0.10377216}
