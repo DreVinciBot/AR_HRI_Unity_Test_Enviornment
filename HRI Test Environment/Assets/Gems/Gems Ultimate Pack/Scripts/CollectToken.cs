@@ -7,10 +7,22 @@ public class CollectToken : MonoBehaviour
 {
     public float duration;
     public Image fillImage;
-
+    public GameObject gemPrefab;
+    //public Transform spawnPoint;
     public float t;
+    public Vector3 spawnPoint;
+    public int randXPosition;
+    public int randZPosition;
 
-
+    public void spawnGem()
+    {
+        GameObject a = Instantiate(gemPrefab)as GameObject;
+        randXPosition = Random.Range(-2, 12);
+        randZPosition = Random.Range(22,36);
+        spawnPoint = new Vector3(randXPosition, 0.95f, randZPosition);
+        a.GetComponent<AnimationScript>().enabled = true;
+        a.transform.position = spawnPoint;
+    }
 
     void OnTriggerEnter (Collider other)
     {
@@ -32,10 +44,10 @@ public class CollectToken : MonoBehaviour
             if(t > 5)
             {
                 Destroy(this.gameObject);
+                spawnGem();
                 fillImage.fillAmount = 0;
                 //Debug.Log("Object Destroyed...");
                 //ScoringSystem.theScore += 50;
-
             }
         }
     }

@@ -3,9 +3,9 @@ using System.Collections;
 
 public class AnimationScript : MonoBehaviour {
 
-    public bool isAnimated = false;
+    public bool isAnimated = true;
 
-    public bool isRotating = false;
+    public bool isRotating = true;
     public bool isFloating = false;
     public bool isScaling = false;
 
@@ -32,8 +32,6 @@ public class AnimationScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-       
         
         if(isAnimated)
         {
