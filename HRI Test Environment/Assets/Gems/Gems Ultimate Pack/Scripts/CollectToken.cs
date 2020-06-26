@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class CollectToken : MonoBehaviour
@@ -19,9 +20,11 @@ public class CollectToken : MonoBehaviour
         GameObject a = Instantiate(gemPrefab)as GameObject;
         randXPosition = Random.Range(-2, 12);
         randZPosition = Random.Range(22,36);
-        spawnPoint = new Vector3(randXPosition, 0.95f, randZPosition);
+        spawnPoint = new Vector3(randXPosition, 1.2f, randZPosition);
         a.GetComponent<AnimationScript>().enabled = true;
         a.transform.position = spawnPoint;
+        a.GetComponent<NavMeshObstacle>().enabled = true;
+
     }
 
     void OnTriggerEnter (Collider other)

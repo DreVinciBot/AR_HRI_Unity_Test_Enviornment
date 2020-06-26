@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 6759361750654536214}
   - component: {fileID: 8811226815104700451}
   - component: {fileID: 3136238401689788844}
-  m_Layer: 0
+  - component: {fileID: 8074580691608640901}
+  m_Layer: 11
   m_Name: Cubie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,6 +121,9 @@ MonoBehaviour:
   fillImage: {fileID: 0}
   gemPrefab: {fileID: 6654240362412941144}
   t: 0
+  spawnPoint: {x: 0, y: 0, z: 0}
+  randXPosition: 0
+  randZPosition: 0
 --- !u!136 &3136238401689788844
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -134,3 +138,19 @@ CapsuleCollider:
   m_Height: 7.960721
   m_Direction: 1
   m_Center: {x: 0.0039429665, y: 3.0166528e-16, z: -0.10377216}
+--- !u!208 &8074580691608640901
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6654240362412941144}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 1, y: 0.5, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: -8.71}
+  m_TimeToStationary: 0.5
