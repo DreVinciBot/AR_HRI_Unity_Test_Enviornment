@@ -37,6 +37,12 @@ public class RobotCollect : MonoBehaviour
             agent.isStopped = true;
             return;
         }
+        Debug.Log("Current position: " + this.transform.forward);
+        Debug.Log("Next goal: " + positions[destPoint]);
+        float angle = Vector3.SignedAngle(transform.forward, positions[destPoint] - transform.position, Vector3.up);
+        Debug.Log("Angle to next dest: " + angle);
+        agent.updateRotation = false;
+        this.transform.Rotate(0, angle, 0, Space.World);
         agent.destination = positions[destPoint];
         destPoint++;
     }
