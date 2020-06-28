@@ -10,11 +10,12 @@ public class AdvancedCollect : MonoBehaviour
     private int destPoint;
     private float destAngle, rotSpeed;
     private NavMeshAgent agent;
-    private bool facing;
+    private bool facing, targetAcquired;
     void Start()
     {
         facing = false;
-        rotSpeed = 1f;
+        targetAcquired = false;
+        rotSpeed = 50f;
         agent = GetComponent<NavMeshAgent>();
         agent.autoBraking = false;
         collectibles = GameObject.FindGameObjectsWithTag("R_Collectible");
@@ -30,40 +31,57 @@ public class AdvancedCollect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
-            if (facing)
-                GoToNextPoint();
-            else
-            {
-                destAngle = Vector3.Angle(this.transform.forward, positions[destPoint] - transform.position);
-                Debug.Log("Destination Angle: " + destAngle);
-                //if (destAngle > -45f && destAngle < 45f)
-                //    noRotate(destAngle);
-                //else
-                    facing = rotation(destAngle);
-            }        
+        Debug.Log("Facing:  " + facing + ", Target Acquired:  " + targetAcquired);
+        if (Vector3.Distance(transform.position, positions[destPoint]) < 0.5f)
+        {
+            targetAcquired = false;
+            facing = false;
+        }
+        if (!targetAcquired)
+        {
+            acquireTarget();
+        }
+        if (facing)
+            GoToNextPoint();
+        else
+        {
+            Vector3 destVector = positions[destPoint] - transform.position;
+            destAngle = Vector3.SignedAngle(this.transform.forward, positions[destPoint] - transform.position, Vector3.up);
+            //Debug.Log("Destination Vector: " + destVector);
+            Debug.Log("Destination Angle: " + destAngle);
+            //if (destAngle > -45f && destAngle < 45f)
+            //    noRotate(destAngle);
+            //else
+                facing = rotation(destAngle);
+        }
+
+        
+    }
+    void acquireTarget()
+    {
+        agent.ResetPath();
+        destPoint++;
+        targetAcquired = true;
     }
 
     void GoToNextPoint()
     {
-        facing = false;
         if (destPoint >= positions.Length)
         {
             agent.isStopped = true;
             return;
         }
         agent.destination = positions[destPoint];
-        destPoint++;
     }
     bool rotation(float angle)
     {
+        if (Mathf.Abs(destAngle) < 5) return true;
         float preAngle, angleChange;
         angleChange = rotSpeed * Time.deltaTime;
-        Debug.Log("angleChange value: " + angleChange);
+        //Debug.Log("angleChange value: " + angleChange);
         if (angle < 0) angleChange *= -1;
         preAngle = angle;
         angle -= angleChange;
-        if (preAngle / angle <= 0) return true;
         this.transform.Rotate(0, angleChange, 0);
         return false;
     }
