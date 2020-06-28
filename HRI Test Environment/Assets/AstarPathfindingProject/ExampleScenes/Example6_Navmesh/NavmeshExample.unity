@@ -344,7 +344,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400004, guid: 7fdfb9a3e0fdf4df880ebc7fa5f56398, type: 3}
   m_Animations:
@@ -379,6 +379,7 @@ MonoBehaviour:
   target: {fileID: 16}
   onlyOnDoubleClick: 1
   use2D: 0
+  cam: {fileID: 26}
 --- !u!114 &43
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,7 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACYn+sP7YYhWAEAAIoCAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFUsFuwjAM/ZUq5w21ILpqxyHEiTKpmzTtMpnEpZHSpEoToCD+fU7LKNqFXJzk+dnvxTmz1njLcY1txV6jM8uhRtowDfua7n7wCHWjML2e2VPEPrqmT/nU0nVLvZMaJz3/QqApyxZdKBWxI4WY7rprPIUYhSxrHDhp9KO8loMKvZLAQTpwr8BhbmwNqiXAWY+EceAViuJm5c14Ldq1fNigNMQQQ3ohTzjmT5NJFtNKkn/EZDqZzQd1lTmEbhvvFD3CKCcAuRG4MFojD0aD1pIk4x2t8LYEfkfTCBZbV1Dg1Uar7ut7BFHDVmE+jGHhnZN6N6I7L8WgfQ/K9+MRmRBZKuIXLuYA2/g5Fllc8lmSYZmmPItZb0LSFCWod6qv3J9P06C+03X9E9Q86F5ZaPqPICwcVvJUm7tJSF2agltEvRlq3FyjpTb0xGIppDO2wN5CoLLzhV1+AVBLAwQUAAAICAAAmJ/rGcaRe3AAAAB7AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0UopFSoqFWYqBeXKKaWJikoGuQYqFQVqysaFFapqZWbKFgVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqeX2KZb2pxhjvIdKXYWgBQSwECLQAUAAAICAAAmJ/rD+2GIVgBAACKAgAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAmJ/rGcaRe3AAAAB7AAAACQAkAAAAAAAAAAAAAAClAQAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAGACAAAAAA==
+    dataString: UEsDBBQAAAgIAACYn+secBJrbAEAAJsCAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFUk1vwjAM/Sso51G1sJZqxyHECZjUTZp2mbzEpZHSBKUJUBD/fU7LR7XLcnES+/m9F+fMGuMtxxU2FXsZndkaaqQN07Cv6e4bj1DvFGbXM3sasfd215V8aOnahd5KjVGHv1DSlGWDLrQasSOFmO7aazyFOApV1jhw0uj/6hoOKnAlAYN04F6Bw7WxNaiGEs56pBwHXqEo7lZejdeiWckBwXgSR0l+Y4merzzjLErSmFY66xhLQy1Ejy/kCR8NJkmUh8Ik+SM1mUTTtJdbmUOg33in6FUe+kJibQTOjdbIg/MgviQPOIAV3pbABzCNYLFxBQVebbRqP78eSdTwo3Ddz2XunZN6+8huvRS99j0o381L5ELkmYhnXKQAP/E4Fnlc8mmSY5llPI9ZZ0LSWCWoN+qv3M2n2aEe6Lp+EiIPupcWdt3PEBYOS3mqzWA0Upem4BZRb/oed9doiYaeWCyEdMYW2FkIUHa+sMsvUEsDBBQAAAgIAACYn+sZxpF7cAAAAHsAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM01VFQSi9KLMgoBooYgjilmSkgdrRSikVKioVZioF5coppYmKSga5BioVBWrKxoUVqmplZsoWBUixQfUllQapfYm4qRE9AYklGWmZeSmZeup5fYplvanGGO8h0pdhaAFBLAQItABQAAAgIAACYn+secBJrbAEAAJsCAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACYn+sZxpF7cAAAAHsAAAAJACQAAAAAAAAAAAAAALkBAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAdAIAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -817,7 +818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1552443640
 Transform:
   m_ObjectHideFlags: 0
@@ -873,7 +874,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 0
   m_AllowMSAA: 1
@@ -1020,7 +1021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  drawGizmos: 1
+  drawGizmos: 0
   detailedGizmos: 0
   startEndModifier:
     addPoints: 0
