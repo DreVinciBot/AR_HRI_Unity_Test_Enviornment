@@ -15448,7 +15448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1326722384}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 10.469781, y: 0.17848921, z: -10.595441}
+  m_LocalPosition: {x: 6.89, y: 18.95, z: -4.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15594,17 +15594,17 @@ PrefabInstance:
     - target: {fileID: 6483120590176594948, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.627122
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6483120590176594948, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.627122
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6483120590176594948, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 2.627122
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6483120590176594949, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
@@ -20024,7 +20024,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1713007295}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1713007297
 Camera:
   m_ObjectHideFlags: 0
@@ -20074,13 +20074,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1713007295}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 15.4, y: 26.84, z: 15.2}
+  m_LocalRotation: {x: 0.3990668, y: -0.1629699, z: -0.07230864, w: 0.8994209}
+  m_LocalPosition: {x: 28.3, y: 20.26, z: -3.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 43.971, y: -29.178001, z: -21.19}
 --- !u!114 &1713007299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20097,7 +20097,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1335
   target: {fileID: 154436010}
-  onlyOnDoubleClick: 1
+  onlyOnDoubleClick: 0
   use2D: 0
   cam: {fileID: 1713007297}
 --- !u!1 &1721862625

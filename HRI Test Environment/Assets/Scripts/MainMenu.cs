@@ -24,6 +24,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("room_scene");
     }
 
+    public void A_star_Room_Scene()
+    {
+        SceneManager.LoadScene("a_star2");
+    }
+
     public void Menu_Scene()
     {
         SceneManager.LoadScene("main_menu");
