@@ -15481,6 +15481,11 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3456276027699835990, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
+        type: 3}
+      propertyPath: alwaysDrawGizmos
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3824707316080725266, guid: 313fe590fdb88cd4e9aa7896b6bc9842,
         type: 3}
       propertyPath: cam
@@ -20058,7 +20063,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -25129,6 +25134,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FPV Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 4211546763028918825, guid: 5a61eb55c228ab84f9c4f445c2bb8108,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4211546763028918826, guid: 5a61eb55c228ab84f9c4f445c2bb8108,
         type: 3}
