@@ -11,6 +11,7 @@ TagManager:
   - phone
   - robotEye
   - Collect_Timer
+  - Marker
   layers:
   - Default
   - TransparentFX

@@ -5,12 +5,14 @@ using UnityEngine.AI;
 public class AdvancedCollect : MonoBehaviour
 {
     // Start is called before the first frame update
+    const float DIAMETER = 1f;
     public GameObject[] collectibles;
+    public GameObject marker;
     public Vector3[] positions, sequence;
     private int destPoint;
     private float destAngle, rotSpeed;
     private NavMeshAgent agent;
-    private bool facing, targetAcquired;
+    private bool facing, targetAcquired, plotted;
     void Start()
     {
         facing = false;
@@ -31,11 +33,11 @@ public class AdvancedCollect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Facing:  " + facing + ", Target Acquired:  " + targetAcquired);
         if (Vector3.Distance(transform.position, positions[destPoint]) < 0.5f)
         {
             targetAcquired = false;
             facing = false;
+            plotted = false;
         }
         if (!targetAcquired)
         {
@@ -47,8 +49,6 @@ public class AdvancedCollect : MonoBehaviour
         {
             Vector3 destVector = positions[destPoint] - transform.position;
             destAngle = Vector3.SignedAngle(this.transform.forward, positions[destPoint] - transform.position, Vector3.up);
-            //Debug.Log("Destination Vector: " + destVector);
-            Debug.Log("Destination Angle: " + destAngle);
             //if (destAngle > -45f && destAngle < 45f)
             //    noRotate(destAngle);
             //else
@@ -59,9 +59,16 @@ public class AdvancedCollect : MonoBehaviour
     }
     void acquireTarget()
     {
+        GameObject[] oldMarkers = GameObject.FindGameObjectsWithTag("Marker");
+        foreach(GameObject marker in oldMarkers)
+        {
+            Destroy(marker);
+        }
         agent.ResetPath();
+        if (destPoint == positions.Length - 1) return;
         destPoint++;
         targetAcquired = true;
+
     }
 
     void GoToNextPoint()
@@ -71,6 +78,7 @@ public class AdvancedCollect : MonoBehaviour
             agent.isStopped = true;
             return;
         }
+        if (!plotted) plotPath();
         agent.destination = positions[destPoint];
     }
     bool rotation(float angle)
@@ -78,7 +86,6 @@ public class AdvancedCollect : MonoBehaviour
         if (Mathf.Abs(destAngle) < 5) return true;
         float preAngle, angleChange;
         angleChange = rotSpeed * Time.deltaTime;
-        //Debug.Log("angleChange value: " + angleChange);
         if (angle < 0) angleChange *= -1;
         preAngle = angle;
         angle -= angleChange;
@@ -91,7 +98,19 @@ public class AdvancedCollect : MonoBehaviour
     }
     void plotPath()
     {
-
+        float distance = Vector3.Distance(positions[destPoint], transform.position);
+        Debug.Log("Distance: " + distance);
+        sequence = new Vector3[(int) Mathf.Floor(distance / DIAMETER)];
+        sequence[0] = transform.position;
+        Vector3 direction = (positions[destPoint] - transform.position) / distance;
+        for (int i = 1; i < sequence.Length; i++)
+        {
+            sequence[i] = (direction * (DIAMETER * i)) + transform.position;
+            GameObject nextMark = Instantiate(marker);
+            nextMark.transform.position = sequence[i];
+        }
+        plotted = true;    
+        
     }
-
+   
 }
