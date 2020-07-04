@@ -6,10 +6,10 @@ public class AdvancedCollect : MonoBehaviour
 {
     // Start is called before the first frame update
     const float DIAMETER = 1f;
-    public GameObject[] collectibles;
+    public GameObject[] collectibles, markers;
     public GameObject marker;
     public Vector3[] positions, sequence;
-    private int destPoint;
+    private int destPoint, pathProgress;
     private float destAngle, rotSpeed;
     private NavMeshAgent agent;
     private bool facing, targetAcquired, plotted;
@@ -27,18 +27,12 @@ public class AdvancedCollect : MonoBehaviour
             positions[i] = collectibles[i].transform.position;
         }
         destPoint = 0;
-        //GoToNextPoint();
+        pathProgress = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, positions[destPoint]) < 0.5f)
-        {
-            targetAcquired = false;
-            facing = false;
-            plotted = false;
-        }
         if (!targetAcquired)
         {
             acquireTarget();
@@ -68,7 +62,6 @@ public class AdvancedCollect : MonoBehaviour
         if (destPoint == positions.Length - 1) return;
         destPoint++;
         targetAcquired = true;
-
     }
 
     void GoToNextPoint()
@@ -78,8 +71,35 @@ public class AdvancedCollect : MonoBehaviour
             agent.isStopped = true;
             return;
         }
-        if (!plotted) plotPath();
-        agent.destination = positions[destPoint];
+        if (!plotted)
+        {
+            plotPath();
+        }
+        else
+        {
+            if(pathProgress == sequence.Length)
+            {
+                agent.destination = positions[destPoint];
+                if (Vector3.Distance(transform.position, positions[destPoint]) < 0.5f)
+                {
+                    targetAcquired = false;
+                    facing = false;
+                    plotted = false;
+                }
+            }
+            else
+            {
+                if (Vector3.Distance(transform.position, sequence[pathProgress]) < 0.5f)
+                {
+                    Destroy(markers[pathProgress]);
+                    pathProgress++;
+                    agent.destination = sequence[pathProgress];
+                }
+
+            }
+
+        }
+        
     }
     bool rotation(float angle)
     {
@@ -99,18 +119,18 @@ public class AdvancedCollect : MonoBehaviour
     void plotPath()
     {
         float distance = Vector3.Distance(positions[destPoint], transform.position);
-        Debug.Log("Distance: " + distance);
         sequence = new Vector3[(int) Mathf.Floor(distance / DIAMETER)];
+        markers = new GameObject[(int)Mathf.Floor(distance / DIAMETER)];
         sequence[0] = transform.position;
         Vector3 direction = (positions[destPoint] - transform.position) / distance;
         for (int i = 1; i < sequence.Length; i++)
         {
             sequence[i] = (direction * (DIAMETER * i)) + transform.position;
-            GameObject nextMark = Instantiate(marker);
-            nextMark.transform.position = sequence[i];
+            markers[i] = Instantiate(marker);
+            markers[i].transform.position = sequence[i];
         }
-        plotted = true;    
-        
+        plotted = true;
+        pathProgress = 0;
     }
    
 }
