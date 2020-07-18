@@ -5,14 +5,15 @@ using UnityEngine.AI;
 public class AdvancedCollect : MonoBehaviour
 {
     // Start is called before the first frame update
-    const float DIAMETER = 1f;
+    const float DIAMETER = 1f, CURVE_ANGLE = 5f;
+    const int PER_PATH = 5;
     public GameObject[] collectibles, markers;
     public GameObject marker;
-    public Vector3[] positions, sequence;
-    private int destPoint, pathProgress;
+    public Vector3[] positions, sequence, curvePath;
+    private int destPoint, pathProgress, curveNum;
     private float destAngle, rotSpeed;
     private NavMeshAgent agent;
-    private bool facing, targetAcquired, plotted;
+    private bool facing, targetAcquired, plotted, curvePlotted;
     void Start()
     {
         facing = false;
@@ -22,11 +23,17 @@ public class AdvancedCollect : MonoBehaviour
         agent.autoBraking = false;
         collectibles = GameObject.FindGameObjectsWithTag("R_Collectible");
         positions = new Vector3[collectibles.Length];
+        bool[] used = new bool[collectibles.Length];
         for (int i = 0; i < collectibles.Length; i++)
         {
-            positions[i] = collectibles[i].transform.position;
+            int nextPos = (int) Random.Range(0f, used.Length);
+            while (used[nextPos])
+            {
+                nextPos = (int)Random.Range(0f, used.Length);
+            }
+            positions[nextPos] = collectibles[i].transform.position;
         }
-        destPoint = 0;
+        destPoint = -1;
         pathProgress = 0;
     }
 
@@ -43,7 +50,7 @@ public class AdvancedCollect : MonoBehaviour
         {
             Vector3 destVector = positions[destPoint] - transform.position;
             destAngle = Vector3.SignedAngle(this.transform.forward, positions[destPoint] - transform.position, Vector3.up);
-            //if (destAngle > -45f && destAngle < 45f)
+           // if ((destAngle > -60f && destAngle < 60f) && Vector3.Distance(transform.position, destVector) > 10)
             //    noRotate(destAngle);
             //else
                 facing = rotation(destAngle);
@@ -53,11 +60,6 @@ public class AdvancedCollect : MonoBehaviour
     }
     void acquireTarget()
     {
-        GameObject[] oldMarkers = GameObject.FindGameObjectsWithTag("Marker");
-        foreach(GameObject marker in oldMarkers)
-        {
-            Destroy(marker);
-        }
         agent.ResetPath();
         if (destPoint == positions.Length - 1) return;
         destPoint++;
@@ -73,7 +75,7 @@ public class AdvancedCollect : MonoBehaviour
         }
         if (!plotted)
         {
-            plotPath();
+            plotPath(transform.position);
         }
         else
         {
@@ -85,6 +87,7 @@ public class AdvancedCollect : MonoBehaviour
                     targetAcquired = false;
                     facing = false;
                     plotted = false;
+                    curvePlotted = false;
                 }
             }
             else
@@ -93,7 +96,8 @@ public class AdvancedCollect : MonoBehaviour
                 {
                     Destroy(markers[pathProgress]);
                     pathProgress++;
-                    agent.destination = sequence[pathProgress];
+                    if (pathProgress != sequence.Length) agent.destination = sequence[pathProgress];
+                    progressPath();
                 }
 
             }
@@ -114,23 +118,38 @@ public class AdvancedCollect : MonoBehaviour
     }
     void noRotate(float angle)
     {
-
+        curveNum = (int) Mathf.Floor(angle / CURVE_ANGLE);
+        curvePath = new Vector3[curveNum];
+        for(int i = 0; i < curveNum; i++)
+        {
+            
+        }
+        curvePlotted = true;
     }
-    void plotPath()
+    void plotPath(Vector3 startPoint)
     {
-        float distance = Vector3.Distance(positions[destPoint], transform.position);
-        sequence = new Vector3[(int) Mathf.Floor(distance / DIAMETER)];
-        markers = new GameObject[(int)Mathf.Floor(distance / DIAMETER)];
+        float distance = Vector3.Distance(positions[destPoint], startPoint);
+        sequence = new Vector3[(int) Mathf.Ceil(distance / DIAMETER)];
+        markers = new GameObject[(int)Mathf.Ceil(distance / DIAMETER)];
         sequence[0] = transform.position;
-        Vector3 direction = (positions[destPoint] - transform.position) / distance;
+        Vector3 direction = (positions[destPoint] - startPoint) / distance; 
         for (int i = 1; i < sequence.Length; i++)
         {
             sequence[i] = (direction * (DIAMETER * i)) + transform.position;
             markers[i] = Instantiate(marker);
             markers[i].transform.position = sequence[i];
+            markers[i].SetActive(false);
         }
         plotted = true;
         pathProgress = 0;
     }
-   
+    void progressPath()
+    {
+        int toProject = pathProgress + PER_PATH;
+        for(int i = pathProgress; i < toProject; i++)
+        {
+            if (toProject == markers.Length) break;
+            markers[i].SetActive(true);
+        }
+    }
 }
