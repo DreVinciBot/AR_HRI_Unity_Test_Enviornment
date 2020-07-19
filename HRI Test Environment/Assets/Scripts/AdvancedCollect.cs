@@ -26,12 +26,13 @@ public class AdvancedCollect : MonoBehaviour
         bool[] used = new bool[collectibles.Length];
         for (int i = 0; i < collectibles.Length; i++)
         {
-            int nextPos = (int) Random.Range(0f, used.Length);
+            int nextPos = (int) Random.Range(0f, used.Length - 1);
             while (used[nextPos])
             {
-                nextPos = (int)Random.Range(0f, used.Length);
+                nextPos = (int)Random.Range(0f, used.Length - 1);
             }
             positions[nextPos] = collectibles[i].transform.position;
+            used[nextPos] = true;
         }
         destPoint = -1;
         pathProgress = 0;
@@ -148,7 +149,7 @@ public class AdvancedCollect : MonoBehaviour
         int toProject = pathProgress + PER_PATH;
         for(int i = pathProgress; i < toProject; i++)
         {
-            if (toProject == markers.Length) break;
+            if (toProject >= markers.Length) break;
             markers[i].SetActive(true);
         }
     }
