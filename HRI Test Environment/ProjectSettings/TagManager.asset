@@ -3,15 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Human
-  - Robot
-  - H_Collectible
-  - R_Collectible
-  - phone
-  - robotEye
-  - Collect_Timer
-  - Marker
+  tags: []
   layers:
   - Default
   - TransparentFX
