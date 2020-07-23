@@ -14,6 +14,11 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    public void Dre_Hallway_Scene()
+    {
+        SceneManager.LoadScene("Dre_hallway_scene");
+    }
+
     public void Hallway_Scene()
     {
         SceneManager.LoadScene("hallway_scene");
@@ -23,6 +28,12 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("room_scene");
     }
+
+    public void Dre_Room_Scene()
+    {
+        SceneManager.LoadScene("Dre_room_scene");
+    }
+
 
     public void A_star_Room_Scene()
     {
