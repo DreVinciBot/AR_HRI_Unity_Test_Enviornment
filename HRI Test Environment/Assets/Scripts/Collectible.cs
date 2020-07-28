@@ -10,7 +10,7 @@ public class Collectible : MonoBehaviour
     public string type;
     public GameObject target;
     public float collideTime, currTime;
-    public bool collided, human;
+    public bool collided, human, isTarget;
     // Start is called before the first frame update
     void Start()
     {
