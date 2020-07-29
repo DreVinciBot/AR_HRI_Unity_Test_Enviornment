@@ -14,10 +14,11 @@ public class AdvancedCollect : MonoBehaviour
     private int destPoint, pathProgress, curveNum;
     private float initAngle, destAngle, rotSpeed;
     private NavMeshAgent agent;
-    private bool facing, targetAcquired, plotted, curvePlotted;
+    public bool obstructed;
+    private bool facing, targetAcquired, plotted, curvePlotted, done;
     void Start()
     {
-        
+        obstructed = false;
         facing = false;
         targetAcquired = false;
         rotSpeed = 50f;
@@ -36,6 +37,8 @@ public class AdvancedCollect : MonoBehaviour
             positions[nextPos] = collectibles[i].transform.position;
             used[nextPos] = true;
         }
+        lArrow.SetActive(false);
+        rArrow.SetActive(false);
         destPoint = -1;
         pathProgress = 0;
     }
@@ -43,7 +46,18 @@ public class AdvancedCollect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            
+        if (done) return;
+        if (!obstructed)
+        {
+            unobstructedUpdate();
+        }
+        else
+        {
+            //TODO: figure out how obstruction works
+        }
+    }
+    void unobstructedUpdate()
+    {
         if (!targetAcquired)
         {
             acquireTarget();
@@ -78,6 +92,7 @@ public class AdvancedCollect : MonoBehaviour
         if (destPoint >= positions.Length)
         {
             agent.isStopped = true;
+            done = true;
             return;
         }
         if (!plotted && !curvePlotted)
@@ -86,6 +101,7 @@ public class AdvancedCollect : MonoBehaviour
         }
         else
         {
+            
             if(pathProgress == sequence.Length)
             {
                 agent.destination = positions[destPoint];
@@ -103,6 +119,7 @@ public class AdvancedCollect : MonoBehaviour
                 {
                     Destroy(markers[pathProgress]);
                     pathProgress++;
+                    updateArrows();
                     if (pathProgress != sequence.Length) agent.destination = sequence[pathProgress];
                     progressPath();
                 }
@@ -112,8 +129,35 @@ public class AdvancedCollect : MonoBehaviour
         }
         
     }
+
+    void updateArrows()
+    {
+        float directional = Vector3.SignedAngle(this.transform.forward, positions[destPoint] - transform.position, Vector3.up);
+        if (pathProgress == 0 || pathProgress >= sequence.Length) directional = Vector3.SignedAngle(this.transform.forward, positions[destPoint] - transform.position, Vector3.up);
+        else directional = Vector3.SignedAngle(this.transform.forward, sequence[pathProgress] - transform.position, Vector3.up);
+        Debug.Log(directional);
+        if (directional >= CURVE_ANGLE || directional <= -CURVE_ANGLE)
+        {
+            if(directional > 0)
+            {
+                lArrow.SetActive(true);
+                rArrow.SetActive(false);
+            }
+            else
+            {
+                rArrow.SetActive(true);
+                lArrow.SetActive(false);
+            }
+        }
+        else
+        {
+            lArrow.SetActive(false);
+            rArrow.SetActive(false);
+        }
+    }
     bool rotation(float angle)
     {
+        updateArrows();
         if (Mathf.Abs(destAngle) < 5) return true;
         float preAngle, angleChange;
         angleChange = rotSpeed * Time.deltaTime;

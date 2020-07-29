@@ -20,6 +20,7 @@ public class ProjectionCollision : MonoBehaviour
     {
         if(other.tag == "Human")
         {
+            robot.GetComponent<AdvancedCollect>().obstructed = true;
             robot.GetComponent<AdvancedCollect>().obstructedPath(transform.position);
         }
     }
