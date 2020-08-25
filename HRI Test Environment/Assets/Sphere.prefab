@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2220324672996072328}
   - component: {fileID: 6179867952390675228}
   - component: {fileID: 1347345006454147552}
+  - component: {fileID: 2903012350588663432}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Marker
@@ -91,3 +92,17 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2903012350588663432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5223576251687501747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaab767fc99fa6241805a3836e82ed2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robot: {fileID: 0}
+  human: {fileID: 0}

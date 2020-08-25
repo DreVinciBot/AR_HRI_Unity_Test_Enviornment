@@ -12,6 +12,7 @@ TagManager:
   - robotEye
   - Collect_Timer
   - Marker
+  - Charging Base
   layers:
   - Default
   - TransparentFX
